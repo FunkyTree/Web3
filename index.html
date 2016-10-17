@@ -1,0 +1,40 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+
+$.getJSON( "/issues", function( data ) {
+  var items = [];
+  $.each( data, function(key, val) {
+      items.push( "<li>Name: " + val.issueName + " Date:" + val.issueDate + "</li>" );
+  });
+
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo(".issueList");
+})
+</script>
+
+</head>
+
+<body>
+
+<div>
+Issues:
+<div class="issueList">
+</div>
+</div>
+
+<div>
+  <form method="post" action="/">
+    <div>Issue: </div>
+    <input type="text" name="issueName">
+    <div>Date: </div>
+    <input type="date" name="issueDate">
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</body>
+</html>
